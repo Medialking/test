@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка на хелпера | Jojoland</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <h1>Jojoland Helper Application</h1>
+            </div>
+            <p class="subtitle">Подай заявку и стань частью команды сервера!</p>
+        </header>
+
+        <form id="applicationForm" class="application-form">
+            <div class="form-section">
+                <h2><i class="fas fa-user"></i> Основная информация</h2>
+                
+                <div class="form-group">
+                    <label for="nickname">
+                        <i class="fas fa-gamepad"></i> Ваш ник в игре *
+                    </label>
+                    <input type="text" id="nickname" name="nickname" required 
+                           placeholder="Введите ваш игровой никнейм">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">
+                        <i class="fas fa-birthday-cake"></i> Ваш реальный возраст *
+                    </label>
+                    <input type="number" id="age" name="age" min="14" max="60" required 
+                           placeholder="Только реальный возраст (будет проверяться!)">
+                    <div class="hint">
+                        <i class="fas fa-exclamation-triangle"></i> Будьте честны, возраст будет проверяться
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2><i class="fas fa-clock"></i> Опыт и доступность</h2>
+                
+                <div class="form-group">
+                    <label for="playtime">
+                        <i class="fas fa-hourglass-half"></i> Сколько вы играете на сервере? *
+                    </label>
+                    <select id="playtime" name="playtime" required>
+                        <option value="" disabled selected>Выберите вариант</option>
+                        <option value="Менее 1 месяца">Менее 1 месяца</option>
+                        <option value="1-3 месяца">1-3 месяца</option>
+                        <option value="3-6 месяцев">3-6 месяцев</option>
+                        <option value="6-12 месяцев">6-12 месяцев</option>
+                        <option value="Более года">Более года</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="worktime">
+                        <i class="fas fa-calendar-alt"></i> Сколько времени готовы уделять работе? *
+                    </label>
+                    <select id="worktime" name="worktime" required>
+                        <option value="" disabled selected>Выберите вариант</option>
+                        <option value="2-3 часа в день">2-3 часа в день</option>
+                        <option value="3-5 часов в день">3-5 часов в день</option>
+                        <option value="5-8 часов в день">5-8 часов в день</option>
+                        <option value="Только по выходным">Только по выходным</option>
+                        <option value="Гибкий график">Гибкий график</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2><i class="fas fa-file-alt"></i> Подробная информация</h2>
+                
+                <div class="form-group">
+                    <label for="experience">
+                        <i class="fas fa-history"></i> Был ли опыт хелперства? *
+                        <span class="word-count">Минимум 20 слов: <span id="expCount">0</span></span>
+                    </label>
+                    <textarea id="experience" name="experience" rows="5" required 
+                              placeholder="Опишите ваш предыдущий опыт работы хелпером/администратором/модератором..."></textarea>
+                    <div class="hint">
+                        <i class="fas fa-info-circle"></i> Подробно опишите ваш опыт (сервер, длительность, обязанности)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">
+                        <i class="fas fa-user-edit"></i> Опишите себя *
+                    </label>
+                    <textarea id="description" name="description" rows="4" required 
+                              placeholder="Расскажите о себе, ваших качествах, увлечениях..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="whyyou">
+                        <i class="fas fa-star"></i> Почему мы должны выбрать вас? *
+                    </label>
+                    <textarea id="whyyou" name="whyyou" rows="4" required 
+                              placeholder="Объясните, почему именно вы должны стать хелпером на нашем сервере..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="agreement" name="agreement" required>
+                <label for="agreement">
+                    Я подтверждаю, что вся предоставленная информация правдива и понимаю, 
+                    что ложные сведения приведут к отказу в рассмотрении заявки
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" id="previewBtn" class="btn preview-btn">
+                    <i class="fas fa-eye"></i> Предварительный просмотр
+                </button>
+                <button type="submit" class="btn submit-btn">
+                    <i class="fas fa-paper-plane"></i> Отправить заявку
+                </button>
+            </div>
+        </form>
+
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2><i class="fas fa-file-contract"></i> Предварительный просмотр заявки</h2>
+                <div id="previewContent"></div>
+                <button id="confirmSubmit" class="btn submit-btn">
+                    <i class="fas fa-check"></i> Подтвердить отправку
+                </button>
+            </div>
+        </div>
+
+        <div id="successModal" class="modal">
+            <div class="modal-content success-modal">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Заявка успешно отправлена!</h2>
+                <p>Ваша заявка на позицию хелпера сервера Jojoland была отправлена.</p>
+                <p>Ожидайте ответа в течение 3-7 дней в личных сообщениях игры.</p>
+                <button id="closeSuccess" class="btn">
+                    <i class="fas fa-times"></i> Закрыть
+                </button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 Jojoland Server. Все права защищены.</p>
+            <p class="disclaimer">
+                Заявки рассматриваются администрацией сервера. 
+                Проверка информации может занять до 7 рабочих дней.
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
