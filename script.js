@@ -2,7 +2,7 @@
 const CONFIG = {
     TELEGRAM_BOT_TOKEN: 'YOUR_TELEGRAM_BOT_TOKEN', // Ваш токен бота
     TELEGRAM_CHAT_ID: 'YOUR_TELEGRAM_CHAT_ID', // ID чата/канала
-    GOOGLE_SCRIPT_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL' // URL Google Apps Script
+    GOOGLE_SCRIPT_URL: 'https://docs.google.com/spreadsheets/d/1lUCOXNV4agSqPB3q8ucDmJTLBfZ71PSn5wJnXYUKgHc/edit?gid=0#gid=0' // URL Google Apps Script
 };
 
 // DOM элементы
