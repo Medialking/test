@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinoLok - Игра</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <!-- Страница входа -->
+    <div id="loginPage" class="page active">
+        <div class="container">
+            <div class="auth-card">
+                <h1 class="logo">KinoLok</h1>
+                <p class="subtitle">Кликай и зарабатывай очки!</p>
+                
+                <!-- Форма входа -->
+                <div id="loginForm" class="auth-form">
+                    <h2>Вход в игру</h2>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Пароль</label>
+                            <input type="password" id="loginPassword" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                    </form>
+                    <p class="auth-switch">
+                        Нет аккаунта? <a href="#" id="showRegister">Создать аккаунт</a>
+                    </p>
+                </div>
+                
+                <!-- Форма регистрации -->
+                <div id="registerForm" class="auth-form hidden">
+                    <h2>Регистрация</h2>
+                    <form id="registerFormElement">
+                        <div class="form-group">
+                            <label for="registerUsername">Имя пользователя</label>
+                            <input type="text" id="registerUsername" required placeholder="Игрок1">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Пароль</label>
+                            <input type="password" id="registerPassword" required placeholder="••••••••">
+                            <div class="password-requirements">
+                                <p>Пароль должен содержать:</p>
+                                <ul id="passwordRequirements">
+                                    <li id="req-length">Минимум 8 символов</li>
+                                    <li id="req-uppercase">Как минимум одну заглавную букву</li>
+                                    <li id="req-lowercase">Как минимум одну строчную букву</li>
+                                    <li id="req-number">Как минимум одну цифру</li>
+                                    <li id="req-special">Как минимум один специальный символ (!@#$%^&*)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Повторить пароль</label>
+                            <input type="password" id="confirmPassword" required placeholder="••••••••">
+                            <div id="passwordMatchError" class="error-message hidden">Пароли не совпадают</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="registerBtn" disabled>Создать аккаунт</button>
+                    </form>
+                    <p class="auth-switch">
+                        Уже есть аккаунт? <a href="#" id="showLogin">Войти</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Игровая страница -->
+    <div id="gamePage" class="page">
+        <header class="game-header">
+            <div class="container">
+                <div class="user-info">
+                    <span class="username" id="displayUsername">Игрок</span>
+                    <button class="btn btn-secondary" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+        </header>
+        
+        <main class="game-main">
+            <div class="container">
+                <div class="game-stats">
+                    <div class="score-display">
+                        <h2>Ваши очки</h2>
+                        <div class="score" id="scoreDisplay">0</div>
+                    </div>
+                </div>
+                
+                <div class="game-area">
+                    <div class="clickable-character" id="clickableCharacter">
+                        <div class="character-emoji">🎬</div>
+                        <div class="character-name">KinoLok</div>
+                    </div>
+                    <div class="click-effect" id="clickEffect">+1</div>
+                </div>
+                
+                <div class="game-info">
+                    <p>Кликай по KinoLok, чтобы зарабатывать очки!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
